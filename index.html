@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Tuku ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<style>
+body { font-family:'Poppins', sans-serif; background:#FFF7F8; text-align:center; padding:50px; overflow-x:hidden; }
+h1,h2 { font-family:'Playfair Display', serif; color:#E88EA0; margin:40px 0 20px; line-height:1.3; }
+button { padding:15px 36px; font-size:18px; margin:10px; border-radius:30px; border:none; cursor:pointer; transition:.3s; font-family:'Playfair Display', serif; }
+.yes { background:#FFD9E1; color:#4A3F3F; }
+.no { background:#F4E1E6; color:#4A3F3F; position:relative; }
+#letter, #proposal, #celebration { display:none; margin-top:40px; max-width:700px; margin-left:auto; margin-right:auto; text-align:left; }
+.heart {position:fixed; width:16px; height:16px; background:#F9C0D3; transform:rotate(45deg); animation: float 7s linear infinite; opacity:.6; pointer-events:none;}
+.heart::before, .heart::after {content:''; position:absolute; width:16px; height:16px; background:#F9C0D3; border-radius:50%;}
+.heart::before{top:-8px; left:0;} .heart::after{left:-8px; top:0;}
+@keyframes float {0% {transform:translateY(0) rotate(45deg); opacity:.6} 100% {transform:translateY(-100vh) rotate(45deg); opacity:0}}
+</style>
+</head>
+<body>
+
+<h1>Will you be my Valentine, Tuku? 💖</h1>
+<button class="yes" id="valYes">Yes</button>
+<button class="no" id="valNo">No</button>
+
+<div id="letter">
+  <p>
+  My dearest Tuku 💖,<br><br>
+  From the moment our paths crossed on August 5, 2025, my life has been transformed in ways I never imagined possible. You are the warmth in my mornings, the calm in my storms, and the light that makes every shadow disappear. Your laughter echoes in my heart, and your smile paints the world in colors I never knew existed. I treasure the quiet moments we share, the gentle touches, the knowing glances, and every whispered word that only we understand. Every day with you feels like a chapter in the most beautiful story ever written, and I am endlessly grateful to be a part of it.<br><br>
+  Your heart is pure, your soul is radiant, and your presence inspires me to be the best version of myself. I am in awe of your kindness, your courage, and the endless love you share with those around you. You make ordinary days extraordinary simply by being you, and I find myself dreaming of a lifetime filled with your love. Every heartbeat of mine calls out your name, every thought is touched by your essence, and I am eternally thankful for the gift of your love. You are my confidant, my muse, my home, and my forever.<br><br>
+  As we journey forward together, I promise to cherish, honor, and celebrate every moment with you. To hold your hand through joy and sorrow, to laugh and to cry with you, and to create a life filled with memories that we will treasure forever. You are my heart, my happiness, and my truest love. Tuku, I love you more deeply than words can capture, more profoundly than time can measure, and more completely than I ever thought possible. Thank you for being you, and for letting me love you in return.
+  </p>
+
+  <div id="proposal">
+    <h2>Will you marry me, Tuku? 💍</h2>
+    <button class="yes" id="marryYes">Yes 💍</button>
+    <button class="no" id="marryNo">No 🙈</button>
+  </div>
+</div>
+
+<div id="celebration">
+  <h1>Yaayyyyy! You're my wifeee! ❤️</h1>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const valYes = document.getElementById("valYes");
+  const valNo = document.getElementById("valNo");
+  const letter = document.getElementById("letter");
+  const proposal = document.getElementById("proposal");
+  const marryYes = document.getElementById("marryYes");
+  const marryNo = document.getElementById("marryNo");
+  const celebration = document.getElementById("celebration");
+
+  // No buttons dodge
+  [valNo, marryNo].forEach(btn=>{
+    btn.addEventListener("mouseover", ()=>{
+      const x=Math.random()*200-100;
+      const y=Math.random()*40-20;
+      btn.style.transform=`translate(${x}px,${y}px)`;
+    });
+  });
+
+  // Valentine Yes → show letter + proposal + hearts
+  valYes.addEventListener("click", ()=>{
+    letter.style.display="block";
+    proposal.style.display="block";
+    valYes.style.display="none";
+    valNo.style.display="none";
+    startHearts();
+    letter.scrollIntoView({behavior:"smooth"});
+  });
+
+  // Proposal Yes → show celebration
+  marryYes.addEventListener("click", ()=>{
+    celebration.style.display="block";
+    letter.style.display="none";
+    proposal.style.display="none";
+  });
+
+  // Floating hearts
+  function startHearts(){
+    setInterval(()=>{
+      const heart = document.createElement("div");
+      heart.className="heart";
+      heart.style.left=Math.random()*100 + "vw";
+      heart.style.bottom="-20px";
+      heart.style.animationDuration = 5 + Math.random()*3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),7000);
+    },300);
+  }
+});
+</script>
+
+</body>
+</html>
